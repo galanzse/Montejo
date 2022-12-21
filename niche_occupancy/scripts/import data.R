@@ -1,11 +1,11 @@
 
-
 library(tidyverse)
 library(readxl)
 
+setwd('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/niche_occupancy')
 
 # abundances
-abundances <- read_excel("data.xlsx", sheet = "abundancias")
+abundances <- read_excel("data.xlsx", sheet = "abundances")
 str(abundances)
 colnames(abundances)[colnames(abundances)=='bosque'] <- 'forest'
 abundances$forest <- as.factor(abundances$forest)
@@ -31,7 +31,7 @@ ggplot(aes(y=richness, x=forest, fill=forest), data=spp_richness) +
 
 
 # traits
-traits <- read_excel("data.xlsx", sheet = "traits_limpio")
+traits <- read_excel("data.xlsx", sheet = "traits")
 str(traits)
 colnames(traits)[colnames(traits)=='especie'] <- 'species'
 colnames(traits)[colnames(traits)=='bosque'] <- 'forest'
@@ -42,7 +42,7 @@ traits$HubVal <- as.numeric(traits$HubVal)
 traits$Thickness <- as.numeric(traits$Thickness)
 
 # import species codes
-spp_code <- read_excel("data.xlsx", sheet = "traits_3")[,1:2] %>% unique()
+spp_code <- read_excel("data.xlsx", sheet = "sppcode")
 colnames(spp_code) <- c('code','species')
 traits <- merge(spp_code, traits, by='species', all.y=T)
 
