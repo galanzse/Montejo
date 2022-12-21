@@ -119,11 +119,11 @@ intr_inter_l_sh <- intr_inter_r %>% pivot_longer(10:13, names_to='SES'); intr_in
 intr_inter_l_br <- intr_inter_r %>% pivot_longer(14:17, names_to='SES'); intr_inter_l_br$var <- 'Breadth'
 
 intr_inter_l_sh$SES <- as.factor(intr_inter_l_sh$SES)
-levels(intr_inter_l_sh$SES) <- c('Total', 'Leaf economics', 'Root economics','Huber')
+levels(intr_inter_l_sh$SES) <- c('Total', 'Leaf economics', 'Root economics','HyArq')
 
 intr_inter_l_br$SES <- as.factor(intr_inter_l_br$SES)
-levels(intr_inter_l_br$SES) <- c('Leaf economics', 'Root economics','Huber','Total')
-intr_inter_l_br$SES  <- factor(intr_inter_l_br$SES, levels=c('Total','Leaf economics', 'Root economics','Huber'))
+levels(intr_inter_l_br$SES) <- c('Leaf economics', 'Root economics','HyArq','Total')
+intr_inter_l_br$SES  <- factor(intr_inter_l_br$SES, levels=c('Total','Leaf economics', 'Root economics','HyArq'))
 
 intr_inter_l <- rbind(intr_inter_l_sh[,c('SES','value','var')], intr_inter_l_br[,c('SES','value','var')])
 
