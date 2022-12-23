@@ -1,13 +1,16 @@
 
 source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure/scripts/import data.R')
-source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure/scripts/trait_distribution function.R')
+source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure/scripts/trait_moment function.R')
 
+# scale traits
+traits[,v_traits] <- apply(traits[,v_traits], 2, scale)
 
-v_traits <- colnames(traits)[3:19]
-trait_dist <- list()
+# I am not going to use speceis x site averages, instead I will use the raw data
+# and weight NAs by abundances
 
 for (t in 1:length(v_traits)) {
   
+  sites$trait <- v_traits[t]
   sites$CWM <- NA
   sites$CWV <- NA
   sites$CWS <- NA
@@ -36,8 +39,9 @@ for (t in 1:length(v_traits)) {
   
   # merge dataframes and run function
   df1 <- merge(df1, ab2, by='species')
-  sites[s,c('CWM','CWV','CWS','CWK')] <- trait_distribution(relative_abundance=df1$abundance,
-                                                            trait_values=df1$trait)
+  sites[s,c('CWM','CWV','CWS','CWK')] <- trait_moment(abundance=df1$abundance,
+                                                      trait=df1$trait,
+                                                      presence=F)
   
   }
   
@@ -45,4 +49,27 @@ for (t in 1:length(v_traits)) {
   trait_dist[[v_traits[t]]] <- sites
   # progress
   print(v_traits[t])
+  
 }
+
+# trait_dist_weighted <- trait_dist
+# trait_dist_unweighted <- trait_dist
+
+trait_dist_weighted <- do.call('rbind', trait_dist_weighted)
+rownames(trait_dist_weighted) <- 1:nrow(trait_dist_weighted)
+write.table(trait_dist_weighted, 'results/trait_dist_weighted.txt')
+
+trait_dist_unweighted <- do.call('rbind', trait_dist_unweighted)
+rownames(trait_dist_unweighted) <- 1:nrow(trait_dist_unweighted)
+write.table(trait_dist_unweighted, 'results/trait_dist_unweighted.txt')
+
+
+par(mfrow=c(1,1))
+plot( trait_dist_weighted$CWM[trait_dist_weighted$trait=='SLA'],
+      trait_dist_unweighted$CWM[trait_dist_unweighted$trait=='SLA'])
+abline(0,1)
+
+
+
+
+

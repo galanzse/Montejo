@@ -4,11 +4,10 @@ library(readxl)
 
 setwd('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure')
 
-# create a matrix of species relative abundances
+# matrix of species abundances
 abundances <- read_excel("data2.xlsx",sheet = "abundances") %>% as.data.frame() # import data
 rownames(abundances) <- abundances$plot; abundances$plot <- NULL # species as rownames
 abundances <- as.matrix(abundances) # sites as rows
-abundances <- abundances/rowSums(abundances) # relative abundances
 
 # sites
 sites <- read_excel("data2.xlsx",sheet = "sites") %>% as.data.frame()
@@ -36,6 +35,7 @@ colSums(is.na(root_traits))
 traits$SRL[traits$SRL>80] <- NA
 traits$SLA[traits$SLA>45] <- NA
 traits$LDMC[traits$LDMC<0.15] <- NA
+traits$LDMC[traits$LDMC>0.7] <- NA
 traits$Thickness[traits$Thickness>0.08] <- NA
 traits$SDMC[traits$SDMC>0.7] <- NA
 traits$SDMC[traits$SDMC<0.15] <- NA
@@ -53,7 +53,10 @@ root_traits$root_C[root_traits$root_C>70] <- NA
 root_traits$root_CN <- root_traits$root_C/root_traits$root_N
 
 traits <- merge(traits, root_traits, by=c('species','forest'))
+rm(root_traits)
 
 # pairs
-# pairs(traits[,3:17], lower.panel=NULL)
-# pairs(root_traits[,3:5], lower.panel=NULL)
+# pairs(traits[,3:20], lower.panel=NULL)
+
+# par(mfrow=c(3,3))
+# for (i in colnames(traits)[3:11]) { hist(traits[,i], 30, main=i) }
