@@ -17,13 +17,18 @@ species <- colnames(abundances)
 
 # create a presence/absence matrix
 presences <- abundances
-presences[,species][presences[,species]>0] <- 1
+presences[presences>0] <- 1
 
 # traits
 traits <- read_excel("data2.xlsx", sheet = "traits")
 traits$forest <- as.factor(traits$forest)
 str(traits)
-root_traits <- read_excel("data2.xlsx", sheet = "root_traits")
+
+# I will use average of root traits because most samples were averaged in the lab
+root_traits <- read_excel("data2.xlsx", sheet = "root_traits") %>% group_by(species, forest) %>%
+  summarise(root_C = mean(root_C, na.rm=T),
+            root_N = mean(root_N, na.rm=T),
+            root_CN = mean(root_CN, na.rm=T) )
 root_traits$forest <- as.factor(root_traits$forest)
 str(root_traits)
 
@@ -39,7 +44,6 @@ traits$LDMC[traits$LDMC>0.7] <- NA
 traits$Thickness[traits$Thickness>0.08] <- NA
 traits$SDMC[traits$SDMC>0.7] <- NA
 traits$SDMC[traits$SDMC<0.15] <- NA
-traits$HubVal[traits$HubVal>0.0015] <- NA
 traits$RDMC[traits$RDMC<0.2] <- NA
 traits$RDMC[traits$RDMC>0.9] <- NA
 traits$SRA[traits$SRA>42] <- NA
@@ -48,12 +52,10 @@ traits$Rdi[traits$Rdi>0.55] <- NA
 traits$leaf_CN[traits$leaf_CN>50] <- NA
 traits$leaf_d13C[traits$leaf_d13C<c(-35)] <- NA
 
-root_traits$root_C[root_traits$root_C<20] <- NA
-root_traits$root_C[root_traits$root_C>70] <- NA
-root_traits$root_CN <- root_traits$root_C/root_traits$root_N
-
-traits <- merge(traits, root_traits, by=c('species','forest'))
-rm(root_traits)
+# with roots I will replace outliers with the min/max real value because there are no replicates
+root_traits$root_C[root_traits$root_C<35] <- 34.24815
+root_traits$root_C[root_traits$root_C>50] <- 54.79243
+root_traits$root_CN <- root_traits$root_C/root_traits$root_N # recalculate
 
 # pairs
 # pairs(traits[,3:20], lower.panel=NULL)
