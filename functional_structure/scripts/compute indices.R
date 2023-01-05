@@ -3,13 +3,14 @@ source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_
 source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure/scripts/trait_moment function.R')
 library(factoextra)
 library(vegan)
+# library(Weighted.Desc.Stat)
 
 #  measures of kurtosis require at least four values (Hulme & Bernard-Verdier, 2018 JVS)
 
 # TRAITS ####
 
 # scale traits
-v_traits <- colnames(traits)[3:16]
+v_traits <- colnames(traits)[3:15]
 traits[,v_traits] <- apply(traits[,v_traits], 2, scale)
 trait_dist_weighted <- list() # abundances
 trait_dist_unweighted <- list() # presences

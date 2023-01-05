@@ -41,7 +41,6 @@ traits$SRL[traits$SRL>80] <- NA
 traits$SLA[traits$SLA>45] <- NA
 traits$LDMC[traits$LDMC<0.15] <- NA
 traits$LDMC[traits$LDMC>0.7] <- NA
-traits$Thickness[traits$Thickness>0.08] <- NA
 traits$SDMC[traits$SDMC>0.7] <- NA
 traits$SDMC[traits$SDMC<0.15] <- NA
 traits$RDMC[traits$RDMC<0.2] <- NA
