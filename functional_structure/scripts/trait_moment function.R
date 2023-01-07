@@ -1,9 +1,8 @@
 
 # function to compute 4 trait moment indexes informative of distribution patterns
 # abundance and trait are vectors of equal length and should have similar orders
-# presence=TRUE transforms the abundance matrix into presence/absence
 
-trait_moment <- function(abundance, trait, presence) {
+trait_moment <- function(abundance, trait) {
 
   # CWM: community mean
   cwm_i <- sum(trait * abundance) / sum(abundance)
