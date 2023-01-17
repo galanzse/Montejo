@@ -54,11 +54,11 @@ traits$Rdi[traits$Rdi %in% boxplot.stats(traits$Rdi)$out] <- NA
 traits$leaf_d13C[traits$leaf_d13C %in% boxplot.stats(traits$leaf_d13C)$out] <- NA
 traits$leaf_d15N[traits$leaf_d15N %in% boxplot.stats(traits$leaf_d15N)$out] <- NA
 traits$leaf_C[traits$leaf_C %in% boxplot.stats(traits$leaf_C)$out] <- NA
-traits$leaf_N[traits$leaf_N %in% boxplot.stats(traits$leaf_N)$out] <- NA
+traits$leaf_N[traits$leaf_N > 4.5] <- NA # less sensitive threshold
 traits$leaf_CN[traits$leaf_CN %in% boxplot.stats(traits$leaf_CN)$out] <- NA
-HV_thick$HubVal[HV_thick$HubVal > 0.0015] <- NA
+HV_thick$HubVal[HV_thick$HubVal > 0.0015] <- NA  # less sensitive threshold
 root_traits$root_C[root_traits$root_C %in% boxplot.stats(root_traits$root_C)$out] <- NA
-root_traits$root_N[root_traits$root_N %in% boxplot.stats(root_traits$root_N)$out] <- NA
+root_traits$root_N[root_traits$root_N < 0.7 | root_traits$root_N > 1.6] <- NA
 root_traits$root_CN[root_traits$root_CN %in% boxplot.stats(root_traits$root_CN)$out] <- NA
 
 # pairs
@@ -68,9 +68,9 @@ t1 <- merge(aggregate(.~species+forest, traits, mean),
 # pairs(HV_thick[,3:4], upper.panel=NULL)
 
 # remove correlated variables
-traits <- traits %>% dplyr::select(-c(SRA,Rdi,leaf_CN,leaf_d15N))
-root_traits <- root_traits %>% dplyr::select(-root_CN)
-HV_thick
+traits <- traits %>% dplyr::select(-c(SRA,Rdi,leaf_CN,leaf_d15N)) %>% as.data.frame()
+root_traits <- root_traits %>% dplyr::select(-root_CN) %>% as.data.frame()
+HV_thick <- HV_thick %>% as.data.frame()
 
 # par(mfrow=c(4,4))
 # for (i in colnames(traits)[3:11]) { hist(deframe(traits[,i]), 30, main=i) }
