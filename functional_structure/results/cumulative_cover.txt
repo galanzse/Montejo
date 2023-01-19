@@ -1,61 +1,61 @@
-"forest" "plot" "cum_cover"
-"1" "Fagus sylvatica" 41 0.993095909326276
-"2" "Fagus sylvatica" 42 0.998657718120805
-"3" "Fagus sylvatica" 52 0.9940081318211
-"4" "Fagus sylvatica" 53 0.986899563318777
-"5" "Fagus sylvatica" 54 0.998606595448212
-"6" "Fagus sylvatica" 61 0.999673159890182
-"7" "Fagus sylvatica" 62 0.993625498007968
-"8" "Fagus sylvatica" 63 0.998492613807658
-"9" "Fagus sylvatica" 64 0.99749373433584
-"10" "Fagus sylvatica" 65 1
-"11" "Mixed forest" 48 0.973320397768615
-"12" "Mixed forest" 49 0.993939393939394
-"13" "Mixed forest" 58 0.995234381769344
-"14" "Mixed forest" 59 0.991661802718252
-"15" "Mixed forest" 60 0.989473684210526
-"16" "Mixed forest" 67 0.984263354882613
-"17" "Mixed forest" 68 1
-"18" "Mixed forest" 69 0.995218361491871
-"19" "Mixed forest" 70 0.984931422596716
-"20" "Mixed forest" 71 0.979643765903308
-"21" "Q. pyrenaica-F. sylvatica" 9 1
-"22" "Q. pyrenaica-F. sylvatica" 10 0.981872509960159
-"23" "Q. pyrenaica-F. sylvatica" 14 0.998762886597938
-"24" "Q. pyrenaica-F. sylvatica" 15 1
-"25" "Q. pyrenaica-F. sylvatica" 16 0.992310649750096
-"26" "Q. pyrenaica-F. sylvatica" 17 0.936046511627907
-"27" "Q. pyrenaica-F. sylvatica" 21 0.99032703823123
-"28" "Q. pyrenaica-F. sylvatica" 22 0.993403693931398
-"29" "Q. pyrenaica-F. sylvatica" 23 0.876953774526106
-"30" "Q. pyrenaica-F. sylvatica" 33 0.987351475661173
-"31" "Quercus petraea" 80 1
-"32" "Quercus petraea" 90 1
-"33" "Quercus petraea" 91 1
-"34" "Quercus petraea" 93 1
-"35" "Quercus petraea" 102 1
-"36" "Quercus petraea" 103 1
-"37" "Quercus petraea" 104 0.981413830673588
-"38" "Quercus petraea" 113 0.988674971687429
-"39" "Quercus petraea" 114 1
-"40" "Quercus petraea" 115 0.974776240846216
-"41" "Quercus pyrenaica" 1 0.968559837728195
-"42" "Quercus pyrenaica" 2 1
-"43" "Quercus pyrenaica" 3 1
-"44" "Quercus pyrenaica" 4 1
-"45" "Quercus pyrenaica" 5 1
-"46" "Quercus pyrenaica" 6 1
-"47" "Quercus pyrenaica" 7 1
-"48" "Quercus pyrenaica" 8 1
-"49" "Quercus pyrenaica" 12 1
-"50" "Quercus pyrenaica" 20 1
-"51" "Shrubland" 83 1
-"52" "Shrubland" 84 1
-"53" "Shrubland" 95 1
-"54" "Shrubland" 96 1
-"55" "Shrubland" 105 1
-"56" "Shrubland" 106 0.946428571428572
-"57" "Shrubland" 107 1
-"58" "Shrubland" 116 0.977452085682075
-"59" "Shrubland" 117 1
-"60" "Shrubland" 118 1
+"forest" "plot" "cum_cover" "sp_missing"
+"1" "Fagus sylvatica" 41 0.993095909326276 1
+"2" "Fagus sylvatica" 42 0.998657718120805 1
+"3" "Fagus sylvatica" 52 0.9940081318211 1
+"4" "Fagus sylvatica" 53 0.986899563318777 1
+"5" "Fagus sylvatica" 54 0.998606595448212 1
+"6" "Fagus sylvatica" 61 0.999673159890182 1
+"7" "Fagus sylvatica" 62 0.993625498007968 1
+"8" "Fagus sylvatica" 63 0.998492613807658 1
+"9" "Fagus sylvatica" 64 0.99749373433584 1
+"10" "Fagus sylvatica" 65 1 0
+"11" "Mixed forest" 48 0.973320397768615 2
+"12" "Mixed forest" 49 0.993939393939394 1
+"13" "Mixed forest" 58 0.995234381769344 1
+"14" "Mixed forest" 59 0.991661802718252 2
+"15" "Mixed forest" 60 0.989473684210526 1
+"16" "Mixed forest" 67 0.984263354882613 1
+"17" "Mixed forest" 68 1 0
+"18" "Mixed forest" 69 0.995218361491871 1
+"19" "Mixed forest" 70 0.984931422596716 2
+"20" "Mixed forest" 71 0.979643765903308 2
+"21" "Q. pyrenaica-F. sylvatica" 9 1 0
+"22" "Q. pyrenaica-F. sylvatica" 10 0.981872509960159 2
+"23" "Q. pyrenaica-F. sylvatica" 14 0.998762886597938 1
+"24" "Q. pyrenaica-F. sylvatica" 15 1 0
+"25" "Q. pyrenaica-F. sylvatica" 16 0.992310649750096 2
+"26" "Q. pyrenaica-F. sylvatica" 17 0.936046511627907 2
+"27" "Q. pyrenaica-F. sylvatica" 21 0.99032703823123 1
+"28" "Q. pyrenaica-F. sylvatica" 22 0.993403693931398 1
+"29" "Q. pyrenaica-F. sylvatica" 23 0.876953774526106 3
+"30" "Q. pyrenaica-F. sylvatica" 33 0.987351475661173 2
+"31" "Quercus petraea" 80 1 0
+"32" "Quercus petraea" 90 1 0
+"33" "Quercus petraea" 91 1 0
+"34" "Quercus petraea" 93 1 0
+"35" "Quercus petraea" 102 1 0
+"36" "Quercus petraea" 103 1 0
+"37" "Quercus petraea" 104 0.981413830673588 1
+"38" "Quercus petraea" 113 0.988674971687429 1
+"39" "Quercus petraea" 114 1 0
+"40" "Quercus petraea" 115 0.974776240846216 1
+"41" "Quercus pyrenaica" 1 0.968559837728195 1
+"42" "Quercus pyrenaica" 2 1 0
+"43" "Quercus pyrenaica" 3 1 0
+"44" "Quercus pyrenaica" 4 1 0
+"45" "Quercus pyrenaica" 5 1 0
+"46" "Quercus pyrenaica" 6 1 0
+"47" "Quercus pyrenaica" 7 1 0
+"48" "Quercus pyrenaica" 8 1 0
+"49" "Quercus pyrenaica" 12 1 0
+"50" "Quercus pyrenaica" 20 1 0
+"51" "Shrubland" 83 1 0
+"52" "Shrubland" 84 1 0
+"53" "Shrubland" 95 1 0
+"54" "Shrubland" 96 1 0
+"55" "Shrubland" 105 1 0
+"56" "Shrubland" 106 0.946428571428572 1
+"57" "Shrubland" 107 1 0
+"58" "Shrubland" 116 0.977452085682075 1
+"59" "Shrubland" 117 1 0
+"60" "Shrubland" 118 1 0

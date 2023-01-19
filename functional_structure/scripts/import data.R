@@ -70,7 +70,7 @@ t1 <- merge(aggregate(.~species+forest, traits, mean),
 # select: LDMC, SLA, SDMC, Hv, RDMC, SRA, Rdiam, d13C, leaf_CN y y root_CN
 traits <- traits %>% dplyr::select(species, forest, LDMC, SLA, SDMC, RDMC, SRA, Rdi, leaf_d13C, leaf_CN) %>% as.data.frame()
 root_traits <- root_traits %>% dplyr::select(species, forest, root_CN) %>% as.data.frame() %>% na.omit()
-HV_thick <- HV_thick %>% dplyr::select(species, forest, HubVal) %>% as.data.frame() %>% na.omit()
+HV_thick <- HV_thick %>% dplyr::select(species, forest, HubVal) %>% as.data.frame()
 
 # par(mfrow=c(4,4))
 # for (i in colnames(traits)[3:11]) { hist(deframe(traits[,i]), 30, main=i) }
@@ -80,6 +80,7 @@ HV_thick <- HV_thick %>% dplyr::select(species, forest, HubVal) %>% as.data.fram
 
 # explore the cumulative abundance we can consider for assemble without imputation
 sites$cum_cover <- NA
+sites$sp_missing <- NA
 for (i in 1:nrow(sites)) {
   
   # select plot
@@ -92,10 +93,13 @@ for (i in 1:nrow(sites)) {
   sp <- traits %>% filter(species %in% names(p1) & forest == sites$forest[i]) %>%
     dplyr::select(species) %>% unique %>% deframe()
   
-  # calculate cumulative cover for species with trait data
+  # calculate cumulative cover for species with trait data, and nº of missing species
   sites$cum_cover[i] <- sum(p1[sp])
-  
+  sites$sp_missing[i] <- length(p1) - length(sp)
 }
 
 cumulative_cover <- sites
 write.table(cumulative_cover, 'results/cumulative_cover.txt')
+
+sites$cum_cover <- NULL
+sites$sp_missing <- NULL

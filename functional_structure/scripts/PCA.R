@@ -11,7 +11,7 @@ moments_weighted <- read.csv("results/moments_weighted.txt", sep="")
 CWM_PCA <- moments_weighted[,1:4] %>% spread(key='trait', value='CWM') %>% na.omit()
 
 # traits to use
-v_traits <- colnames(CWM_PCA)[3:15]
+v_traits <- colnames(CWM_PCA)[3:12]
 # v_traits <- v_traits[!(v_traits%in%c(leaf_d15N','leaf_CN','root_CN','SRA','Rdi'))]
 
 # there is something weird with Shrubland
