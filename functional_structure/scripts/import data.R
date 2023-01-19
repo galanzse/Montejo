@@ -67,12 +67,35 @@ t1 <- merge(aggregate(.~species+forest, traits, mean),
 # pairs(t1[,3:18], upper.panel=NULL)
 # pairs(HV_thick[,3:4], upper.panel=NULL)
 
-# remove correlated variables
-traits <- traits %>% dplyr::select(-c(SRA,Rdi,leaf_CN,leaf_d15N)) %>% as.data.frame()
-root_traits <- root_traits %>% dplyr::select(-root_CN) %>% as.data.frame()
-HV_thick <- HV_thick %>% as.data.frame()
+# select: LDMC, SLA, SDMC, Hv, RDMC, SRA, Rdiam, d13C, leaf_CN y y root_CN
+traits <- traits %>% dplyr::select(species, forest, LDMC, SLA, SDMC, RDMC, SRA, Rdi, leaf_d13C, leaf_CN) %>% as.data.frame()
+root_traits <- root_traits %>% dplyr::select(species, forest, root_CN) %>% as.data.frame() %>% na.omit()
+HV_thick <- HV_thick %>% dplyr::select(species, forest, HubVal) %>% as.data.frame() %>% na.omit()
 
 # par(mfrow=c(4,4))
 # for (i in colnames(traits)[3:11]) { hist(deframe(traits[,i]), 30, main=i) }
 # for (i in colnames(root_traits)[3:4]) { hist(deframe(root_traits[,i]), 30, main=i) }
 # for (i in colnames(HV_thick)[3:4]) { hist(deframe(HV_thick[,i]), 30, main=i) }
+
+
+# explore the cumulative abundance we can consider for assemble without imputation
+sites$cum_cover <- NA
+for (i in 1:nrow(sites)) {
+  
+  # select plot
+  p1 <- abundances[as.character(sites$plot[i]),]
+  p1 <- p1[p1>0]
+  # compute relative abundances
+  p1 <- p1/sum(p1)
+  
+  # species with trait data available
+  sp <- traits %>% filter(species %in% names(p1) & forest == sites$forest[i]) %>%
+    dplyr::select(species) %>% unique %>% deframe()
+  
+  # calculate cumulative cover for species with trait data
+  sites$cum_cover[i] <- sum(p1[sp])
+  
+}
+
+cumulative_cover <- sites
+write.table(cumulative_cover, 'results/cumulative_cover.txt')
