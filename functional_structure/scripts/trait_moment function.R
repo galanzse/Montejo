@@ -4,7 +4,7 @@
 
 trait_moment <- function(abundance, trait) {
 
-  # CWM: community mean
+  # CWM: community weighted mean using raw values
   cwm_i <- sum(trait * abundance) / sum(abundance)
   # CWV: community variance
   cwv_i <- sum(abundance * (trait - cwm_i)^2)  / sum(abundance)
@@ -18,3 +18,5 @@ trait_moment <- function(abundance, trait) {
   
   return(results)
 }
+
+

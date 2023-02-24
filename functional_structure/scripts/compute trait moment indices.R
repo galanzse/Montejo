@@ -37,8 +37,6 @@ root_traits$root_CN[root_traits$species=='p.avi' & root_traits$forest=='Quercus 
 
 # scale traits
 v_traits <- colnames(traits)[3:10]
-s_traits <- traits
-s_traits[,v_traits] <- apply(s_traits[,v_traits], 2, scale)
 trait_dist_weighted <- list() # abundances
 trait_dist_unweighted <- list() # presences
 
@@ -62,11 +60,11 @@ for (t in 1:length(v_traits)) {
   ab1 <- abundances[pl1,]
   
   sp1 <- which(ab1>0) %>% names() # species names
-  ab1 <- ab1[sp1] # abundaces
+  ab1 <- ab1[sp1] # abundances
   pr1 <- ab1; pr1[] <- 1 # presences
 
   # filter trait database
-  df1 <- s_traits %>% filter(forest==sites[s,'forest'] & species%in%sp1) %>%
+  df1 <- traits %>% filter(forest==sites[s,'forest'] & species%in%sp1) %>%
     dplyr::select(species,v_traits[t]) %>% na.omit()
   colnames(df1) <- c("species","trait")
   
@@ -106,12 +104,8 @@ rownames(trait_dist_unweighted) <- 1:nrow(trait_dist_unweighted)
 
 # HV_thick ####
 
-# for HubVal and Thickness there is data
-
 # scale traits
 v_traits <- "HubVal"
-s_HV_thick <- HV_thick
-HV_thick$HubVal <- scale(HV_thick$HubVal)
 HVT_dist_weighted <- list() # abundances
 HVT_dist_unweighted <- list() # presences
 
@@ -135,8 +129,8 @@ for (s in 1:nrow(sites)) {
   pr1 <- ab1; pr1[] <- 1 # presences
   
   # filter trait database
-  df1 <- s_HV_thick %>% filter(forest==sites$forest[s] & species%in%sp1) %>% dplyr::select(species,HubVal) %>% na.omit()
-  df2 <- s_HV_thick %>% filter(species %in% setdiff(sp1, df1$species)) %>% dplyr::select(species,HubVal) %>% na.omit()
+  df1 <- HV_thick %>% filter(forest==sites$forest[s] & species%in%sp1) %>% dplyr::select(species,HubVal) %>% na.omit()
+  df2 <- HV_thick %>% filter(species %in% setdiff(sp1, df1$species)) %>% dplyr::select(species,HubVal) %>% na.omit()
   df1 <- rbind(df1, df2); colnames(df1) <- c("species","trait")
   
   # remove species without trait data
@@ -171,8 +165,6 @@ rownames(HVT_dist_unweighted) <- 1:nrow(HVT_dist_unweighted)
 
 # scale traits
 v_traits <- "root_CN"
-s_root_traits <- root_traits
-root_traits$root_CN <- scale(root_traits$root_CN)
 root_dist_weighted <- list() # abundances
 root_dist_unweighted <- list() # presences
 
@@ -195,7 +187,7 @@ for (s in 1:nrow(sites)) {
   pr1 <- ab1; pr1[] <- 1 # presences
   
   # filter trait database
-  df1 <- s_root_traits %>% filter(forest==sites[s,'forest'] & species%in%sp1) %>%
+  df1 <- root_traits %>% filter(forest==sites[s,'forest'] & species%in%sp1) %>%
     dplyr::select(species,root_CN) %>% na.omit()
   colnames(df1) <- c("species","trait")
   
