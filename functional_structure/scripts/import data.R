@@ -2,7 +2,7 @@
 library(tidyverse)
 library(readxl)
 
-setwd('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure')
+setwd('C:/Users/user/OneDrive/PUBLICACIONES/BTU/montejo/functional_structure')
 
 # matrix of species abundances
 abundances <- read_excel("data2.xlsx",sheet = "abundances") %>% as.data.frame() # import data
@@ -43,7 +43,7 @@ colSums(is.na(HV_thick))
 colSums(is.na(root_traits))
 
 # remove outliers
-traits$LDMC[traits$LDMC %in% boxplot.stats(traits$LDMC)$out] <- NA
+traits$LDMC[traits$LDMC %in% boxplot.stats(traits$LDMC, coef=1.50)$out] <- NA
 traits$SLA[traits$SLA %in% boxplot.stats(traits$SLA)$out] <- NA
 traits$SDMC[traits$SDMC %in% boxplot.stats(traits$SDMC)$out] <- NA
 traits$RDMC[traits$RDMC %in% boxplot.stats(traits$RDMC)$out] <- NA
@@ -67,9 +67,9 @@ t1 <- merge(aggregate(.~species+forest, traits, mean),
 # pairs(t1[,3:18], upper.panel=NULL)
 # pairs(HV_thick[,3:4], upper.panel=NULL)
 
-# select: LDMC, SLA, SDMC, Hv, RDMC, SRA, Rdiam, d13C, leaf_CN y y root_CN
-traits <- traits %>% dplyr::select(species, forest, LDMC, SLA, SDMC, RDMC, SRA, Rdi, leaf_d13C, leaf_CN) %>% as.data.frame()
-root_traits <- root_traits %>% dplyr::select(species, forest, root_CN) %>% as.data.frame() %>% na.omit()
+# select: LDMC, SLA, SDMC, Hv, RDMC, SRA, Rdiam, d13C, leaf_CN, leaf_N, root_N y root_CN
+traits <- traits %>% dplyr::select(species, forest, LDMC, SLA, SDMC, RDMC, SRA, Rdi, leaf_d13C, leaf_CN, leaf_N) %>% as.data.frame()
+root_traits <- root_traits %>% dplyr::select(species, forest, root_CN, root_N) %>% as.data.frame() %>% na.omit()
 HV_thick <- HV_thick %>% dplyr::select(species, forest, HubVal) %>% as.data.frame()
 
 # par(mfrow=c(4,4))

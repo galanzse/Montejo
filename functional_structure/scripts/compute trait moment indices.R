@@ -2,41 +2,41 @@
 library(factoextra)
 library(vegan)
 # library(Weighted.Desc.Stat)
-source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure/scripts/import data.R')
-source('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure/scripts/trait_moment function.R')
+source('C:/Users/user/OneDrive/PUBLICACIONES/BTU/montejo/functional_structure/scripts/import data.R')
+source('C:/Users/user/OneDrive/PUBLICACIONES/BTU/montejo/functional_structure/scripts/trait_moment function.R')
 
 
 # IMPUTATION ####
 # imputation of species x trait combinations in sites with 0 obs
 traits[traits$species=='a.his' & traits$forest=='Quercus pyrenaica',c('RDMC','SRA','Rdi')] <- traits[traits$species=='a.his' & traits$forest=='Shrubland',c('RDMC','SRA','Rdi')]
 traits[traits$species=='c.sco' & traits$forest=='Q. pyrenaica-F. sylvatica',c('RDMC','SRA','Rdi')] <- traits[traits$species=='c.sco' & traits$forest=='Quercus pyrenaica',c('RDMC','SRA','Rdi')]
-traits[traits$species=='q.pyr' & traits$forest=='Shrubland',c('RDMC','SRA','Rdi')] <- traits[traits$species=='q.pyr' & traits$forest=='Quercus pyrenaica',c('RDMC','SRA','Rdi')]
 traits[traits$species=='c.sco' & traits$forest=='Shrubland',c('RDMC','SRA','Rdi')] <- traits[traits$species=='c.sco' & traits$forest=='Quercus pyrenaica',c('RDMC','SRA','Rdi')]
+traits[traits$species=='q.pyr' & traits$forest=='Shrubland',c('RDMC','SRA','Rdi')] <- traits[traits$species=='q.pyr' & traits$forest=='Quercus pyrenaica',c('RDMC','SRA','Rdi')]
 traits[traits$species=='l.sto' & traits$forest=='Quercus pyrenaica','SRA'][1:2] <- traits[traits$species=='l.sto','SRA'] %>% na.omit() %>% sample(2)
 
 
 # I need to compute root traits for combinations missing in the traits df
-temp <- merge(traits, root_traits, by=c('species','forest'), all.x=T)[,c('species','forest','root_CN')]
+temp <- merge(traits, root_traits, by=c('species','forest'), all.x=T)[,c('species','forest','root_CN','root_N')]
 temp <- temp[is.na(temp$root_CN),] %>% unique() %>% filter(species!='malus')
 root_traits <- rbind(root_traits, temp)
 
-root_traits$root_CN[root_traits$species=='a.his' & root_traits$forest=='Quercus pyrenaica'] <- root_traits %>% filter(species=='a.his') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='c.sco' & root_traits$forest=='Q. pyrenaica-F. sylvatica'] <- root_traits %>% filter(species=='c.sco') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='c.sco' & root_traits$forest=='Quercus pyrenaica'] <- root_traits %>% filter(species=='c.sco') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='c.sco' & root_traits$forest=='Shrubland'] <- root_traits %>% filter(species=='c.sco') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='g.flo' & root_traits$forest=='Quercus pyrenaica'] <- root_traits %>% filter(species=='g.flo') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='i.aqu' & root_traits$forest=='Quercus pyrenaica'] <- root_traits %>% filter(species=='i.aqu') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='i.aqu' & root_traits$forest=='Quercus petraea'] <- root_traits %>% filter(species=='i.aqu') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='j.com' & root_traits$forest=='Quercus pyrenaica'] <- root_traits %>% filter(species=='j.com') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='s.auc' & root_traits$forest=='Quercus petraea'] <- root_traits %>% filter(species=='s.auc') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
-root_traits$root_CN[root_traits$species=='p.avi' & root_traits$forest=='Quercus pyrenaica'] <- root_traits %>% filter(species=='p.avi') %>% dplyr::select(root_CN) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='a.his' & root_traits$forest=='Quercus pyrenaica',c('root_CN','root_N')] <- root_traits %>% filter(species=='a.his') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='c.sco' & root_traits$forest=='Q. pyrenaica-F. sylvatica',c('root_CN','root_N')] <- root_traits %>% filter(species=='c.sco') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='c.sco' & root_traits$forest=='Quercus pyrenaica',c('root_CN','root_N')] <- root_traits %>% filter(species=='c.sco') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='c.sco' & root_traits$forest=='Shrubland',c('root_CN','root_N')] <- root_traits %>% filter(species=='c.sco') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='g.flo' & root_traits$forest=='Quercus pyrenaica',c('root_CN','root_N')] <- root_traits %>% filter(species=='g.flo') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='i.aqu' & root_traits$forest=='Quercus pyrenaica',c('root_CN','root_N')] <- root_traits %>% filter(species=='i.aqu') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='i.aqu' & root_traits$forest=='Quercus petraea',c('root_CN','root_N')] <- root_traits %>% filter(species=='i.aqu') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='j.com' & root_traits$forest=='Quercus pyrenaica',c('root_CN','root_N')] <- root_traits %>% filter(species=='j.com') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='s.auc' & root_traits$forest=='Quercus petraea',c('root_CN','root_N')] <- root_traits %>% filter(species=='s.auc') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
+root_traits[root_traits$species=='p.avi' & root_traits$forest=='Quercus pyrenaica',c('root_CN','root_N')] <- root_traits %>% filter(species=='p.avi') %>% dplyr::select(root_CN,root_N) %>% colMeans(na.rm=T)
 
 
 # TRAITS ####
 #  measures of kurtosis require at least four values (Hulme & Bernard-Verdier, 2018 JVS)
 
 # scale traits
-v_traits <- colnames(traits)[3:10]
+v_traits <- colnames(traits)[3:11]
 trait_dist_weighted <- list() # abundances
 trait_dist_unweighted <- list() # presences
 
@@ -164,50 +164,62 @@ rownames(HVT_dist_unweighted) <- 1:nrow(HVT_dist_unweighted)
 # for roots there is only one mean value of species x site
 
 # scale traits
-v_traits <- "root_CN"
+v_traits <- colnames(root_traits)[3:4]
 root_dist_weighted <- list() # abundances
 root_dist_unweighted <- list() # presences
 
-sites$trait <- "root_CN"
-sites$CWM <- NA
-sites$CWV <- NA
-sites$CWS <- NA
-sites$CWK <- NA
+for (t in 1:length(v_traits)) {
 
-sites_ab <- sites
-sites_pr <- sites_ab
+  sites$trait <- v_traits[t]
+  sites$CWM <- NA
+  sites$CWV <- NA
+  sites$CWS <- NA
+  sites$CWK <- NA
   
-for (s in 1:nrow(sites)) {
+  sites_ab <- sites
+  sites_pr <- sites_ab
+  
+  for (s in 1:nrow(sites)) {
     
-  pl1 <- as.character(sites[s,'plot']) # plot
-  ab1 <- abundances[pl1,]
+    pl1 <- as.character(sites[s,'plot']) # plot
+    ab1 <- abundances[pl1,]
+    
+    sp1 <- which(ab1>0) %>% names() # species names
+    ab1 <- ab1[sp1] # abundances
+    pr1 <- ab1; pr1[] <- 1 # presences
+    
+    # filter trait database
+    df1 <- root_traits %>% filter(forest==sites[s,'forest'] & species%in%sp1) %>%
+      dplyr::select(species,v_traits[t]) %>% na.omit()
+    colnames(df1) <- c("species","trait")
+    
+    # remove species without trait data
+    ab1 <- ab1[unique(df1$species)]
+    
+    # merge data
+    ab1 <- as.data.frame(ab1); ab1$species <- rownames(ab1)
+    colnames(ab1) <- c('abundance','species')
+    ab1 <- merge(df1, ab1, by='species')
+    
+    pr1 <- as.data.frame(pr1); pr1$species <- rownames(pr1)
+    colnames(pr1) <- c('presence','species')
+    pr1 <- merge(df1, pr1, by='species')
+    
+    # run function
+    sites_ab[s,c('CWM','CWV','CWS','CWK')] <- trait_moment(abundance=ab1$abundance, trait=ab1$trait)
+    sites_pr[s,c('CWM','CWV','CWS','CWK')] <- trait_moment(abundance=pr1$presence, trait=pr1$trait)
+    
+  }
   
-  sp1 <- which(ab1>0) %>% names() # species names
-  ab1 <- ab1[sp1] # abundances
-  pr1 <- ab1; pr1[] <- 1 # presences
+  # save results
+  root_dist_weighted[[v_traits[t]]] <- sites_ab
+  root_dist_unweighted[[v_traits[t]]] <- sites_pr
   
-  # filter trait database
-  df1 <- root_traits %>% filter(forest==sites[s,'forest'] & species%in%sp1) %>%
-    dplyr::select(species,root_CN) %>% na.omit()
-  colnames(df1) <- c("species","trait")
-  
-  # remove species without trait data
-  ab1 <- ab1[unique(df1$species)]
-  
-  # merge data
-  ab1 <- as.data.frame(ab1); ab1$species <- rownames(ab1)
-  colnames(ab1) <- c('abundance','species')
-  ab1 <- merge(df1, ab1, by='species')
-  
-  pr1 <- as.data.frame(pr1); pr1$species <- rownames(pr1)
-  colnames(pr1) <- c('presence','species')
-  pr1 <- merge(df1, pr1, by='species')
-  
-  # run function
-  sites_ab[s,c('CWM','CWV','CWS','CWK')] <- trait_moment(abundance=ab1$abundance, trait=ab1$trait)
-  sites_pr[s,c('CWM','CWV','CWS','CWK')] <- trait_moment(abundance=pr1$presence, trait=pr1$trait)
+  # progress
+  print(v_traits[t])
     
 }
+
   
 # save results
 root_dist_weighted <- sites_ab
