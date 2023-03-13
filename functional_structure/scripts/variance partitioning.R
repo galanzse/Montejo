@@ -1,13 +1,14 @@
 
-setwd('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/functional_structure')
+setwd('C:/Users/user/OneDrive/PUBLICACIONES/BTU/montejo/functional_structure')
 source('scripts/import data.R')
 
 # variance partitining considering species abundances
 # de la Riva et a. 2016 (Oikos); modified from Lepš et al. (2011)
 
 # template
-temp <- read.csv("results/moments_weighted.txt", sep="")[,1:4] %>% spread(key=trait, value=CWM); temp[,3:15] <- NA
-temp <- temp %>% dplyr::select(-root_C, -root_N, -Thickness, -HubVal)
+temp <- read.csv("results/moments_weighted.txt", sep="")[,1:4] %>% spread(key=trait, value=CWM)
+temp[,3:15] <- NA
+temp <- temp %>% dplyr::select(-root_C, -Thickness, -HubVal)
   
 # calculate five types of CWM (parameters) using:
 
