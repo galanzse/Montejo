@@ -222,10 +222,10 @@ for (t in 1:length(v_traits)) {
 
   
 # save results
-root_dist_weighted <- sites_ab
+root_dist_weighted <- do.call('rbind', root_dist_weighted)
 rownames(root_dist_weighted) <- 1:nrow(root_dist_weighted)
 
-root_dist_unweighted <- sites_pr
+root_dist_unweighted <- do.call('rbind', root_dist_unweighted)
 rownames(root_dist_unweighted) <- 1:nrow(root_dist_unweighted)
 
 
