@@ -19,4 +19,3 @@ trait_moment <- function(abundance, trait) {
   return(results)
 }
 
-

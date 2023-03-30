@@ -1,4 +1,6 @@
 
+# Import trait and presence data, NA imputation
+
 library(tidyverse)
 library(readxl)
 

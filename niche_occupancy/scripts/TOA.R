@@ -1,5 +1,5 @@
 
-# adapt unction of Li et al
+# Import and adapt function from Li et al. 2018
 
 # Function to calculate for the metrics (T, O and A) for a given community
 # x is dataframe of species' names and their trait values for a given community

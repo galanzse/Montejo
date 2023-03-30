@@ -1,9 +1,9 @@
 
+# Plots and SES of null models
 
 library(tidyverse)
 library(ggpubr)
 source('scripts/import data.R')
-
 
 # import data
 out_forest <- read.table("resultados/out_forest.txt")

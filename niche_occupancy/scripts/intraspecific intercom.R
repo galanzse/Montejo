@@ -1,5 +1,5 @@
 
-# following Benavides et al. 2019
+# Estimate the relative importance of niche shifts and expansion following Benvides et al. 2019
 
 source('scripts/abiotic.R')
 library(hypervolume)

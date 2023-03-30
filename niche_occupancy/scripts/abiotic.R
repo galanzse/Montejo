@@ -1,4 +1,6 @@
 
+# Import and explore abiotic data
+
 library(readxl)
 library(tidyverse)
 library(ggforce)
@@ -40,7 +42,3 @@ ggplot(aes(y=A.ob, x=PC1, color=forest), data=commxabiotic) + geom_point()
 ggplot(aes(y=T.SES, x=PC1, color=forest), data=commxabiotic) + geom_point()
 ggplot(aes(y=O.SES, x=PC1, color=forest), data=commxabiotic) + geom_point()
 ggplot(aes(y=A.SES, x=PC1, color=forest), data=commxabiotic) + geom_point()
-
-
-# 
-niche_results <- read.csv("resultados/niche_results.txt", sep="")

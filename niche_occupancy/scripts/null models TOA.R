@@ -1,7 +1,5 @@
 
-# This section of codes is to 
-# 1. calculate functional niche occupancy metrics (T, O and A) each local community in each functional space (trait combination).
-# 2. construct 1000 null communities for each local community and calculate the metrics for each null community.
+# Compute observed values of T, O nad A; and run two null models: using the species present at a forest type, or all species in Montejo
 
 source('scripts/import data.R')
 source('scripts/TOA.R')
