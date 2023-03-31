@@ -4,7 +4,7 @@
 library(tidyverse)
 library(readxl)
 
-setwd('C:/Users/user/OneDrive/TESIS Y PUBLICACIONES/COTTBUS/montejo/niche_occupancy')
+setwd('C:/Users/user/OneDrive/PUBLICACIONES/BTU/montejo/niche_occupancy')
 
 # abundances
 abundances <- read_excel("data.xlsx", sheet = "abundances")

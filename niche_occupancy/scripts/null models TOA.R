@@ -59,8 +59,6 @@ df_trait_pca$forxspp <- paste(df_trait_pca$forest, df_trait_pca$code, sep=' ')
 # functional axes to analyse
 trait.ana <- c("PC1","PC2","PC3")
 
-
-# Li et al. 2017 [quantile threshold = 0.05, 1,000 MC samples x data point, fixed kernel band-width = 0.5 SD]
 bw <- 0.5
 sxp <- 1000
 qt <- 0.05 # default (see Blonder et al 2018)
