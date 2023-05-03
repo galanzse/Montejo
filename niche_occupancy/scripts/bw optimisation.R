@@ -3,7 +3,7 @@
 
 # The disjunct factor is the ratio between the size of the calculated hypervolume and the size of a hypervolume constructed from the same data with disjunct data points (i.e. no overlapping kernels). # Values > 0.9 indicate that the hypervolume has ‘holes’ and should be avoided by increasing the bandwidth value.
 
-
+library(hypervolume)
 source('scripts/import data.R')
 
 # functional space
