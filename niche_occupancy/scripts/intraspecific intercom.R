@@ -32,7 +32,7 @@ intr_inter_r$diff.vol3 <- NA
 # null model for each species
 n.run <- 499
 dist.null.m <- matrix(ncol=length(unique(sppxfor$code)), nrow=n.run) # niche shift
-colnames(dist.null.m) <- unique(obs.centroids$code)
+colnames(dist.null.m) <- unique(sppxfor$code)
 dist1.null.m <- dist.null.m
 dist2.null.m <- dist.null.m
 dist3.null.m <- dist.null.m

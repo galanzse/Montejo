@@ -49,13 +49,13 @@
 "48" "Quercus pyrenaica" 8 1 0
 "49" "Quercus pyrenaica" 12 1 0
 "50" "Quercus pyrenaica" 20 1 0
-"51" "Shrubland" 83 1 0
-"52" "Shrubland" 84 1 0
-"53" "Shrubland" 95 1 0
-"54" "Shrubland" 96 1 0
+"51" "Shrubland" 83 0.884159719175077 2
+"52" "Shrubland" 84 0.69601677148847 1
+"53" "Shrubland" 95 0.525373134328358 1
+"54" "Shrubland" 96 0.664644236072808 1
 "55" "Shrubland" 105 1 0
-"56" "Shrubland" 106 0.946428571428572 1
-"57" "Shrubland" 107 1 0
-"58" "Shrubland" 116 0.977452085682075 1
+"56" "Shrubland" 106 0.779017857142857 2
+"57" "Shrubland" 107 0.914225941422594 1
+"58" "Shrubland" 116 0.924669468074203 2
 "59" "Shrubland" 117 1 0
-"60" "Shrubland" 118 1 0
+"60" "Shrubland" 118 0.957323498419389 1
